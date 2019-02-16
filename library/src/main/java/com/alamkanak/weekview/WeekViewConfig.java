@@ -104,6 +104,8 @@ public class WeekViewConfig {
     boolean horizontalFlingEnabled;
     boolean horizontalScrollingEnabled;
     int scrollDuration;
+    int minHour;
+    int maxHour;
 
     // Min Max Date
     Calendar minDate;
@@ -201,6 +203,8 @@ public class WeekViewConfig {
             horizontalScrollingEnabled = a.getBoolean(R.styleable.WeekView_horizontalScrollingEnabled, true);
             verticalFlingEnabled = a.getBoolean(R.styleable.WeekView_verticalFlingEnabled, true);
             scrollDuration = a.getInt(R.styleable.WeekView_scrollDuration, 250);
+            minHour = a.getInt(R.styleable.WeekView_minHour, 0);
+            maxHour = a.getInt(R.styleable.WeekView_maxHour, 24);
         } finally {
             a.recycle();
         }
