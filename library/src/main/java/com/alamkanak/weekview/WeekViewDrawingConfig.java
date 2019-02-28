@@ -154,6 +154,9 @@ class WeekViewDrawingConfig {
         allDayEventTextPaint.setStyle(Paint.Style.FILL);
         allDayEventTextPaint.setColor(config.eventTextColor);
         allDayEventTextPaint.setTextSize(config.allDayEventTextSize);
+        
+        //set horizontal starting position
+        currentOrigin.y = (int) config.hourHeight * config.minHour * (-1);
 
         currentAllDayEventHeight = 0;
         hasEventInHeader = false;
@@ -259,12 +262,8 @@ class WeekViewDrawingConfig {
 
         final float potentialNewVerticalOrigin = height - (dayHeight + headerHeight);
 
-	final float heightOfTooLateHours = (24 - config.maxHour) * config.hourHeight;
-	final float heightOfTooEarlyHours = config.minHour * config.hourHeight;
-
-        currentOrigin.y = max(currentOrigin.y, potentialNewVerticalOrigin + heightOfTooLateHours);
-        currentOrigin.y = min(currentOrigin.y, -heightOfTooEarlyHours);
-	currentOrigin.y = 0;
+        currentOrigin.y = max(currentOrigin.y, potentialNewVerticalOrigin);
+        currentOrigin.y = min(currentOrigin.y, 0);
     }
 
     float getHeaderBottomPosition(WeekViewConfig config) {

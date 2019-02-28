@@ -157,6 +157,14 @@ final class WeekViewGestureHandler<T> extends GestureDetector.SimpleOnGestureLis
                 break;
             case VERTICAL:
                 drawingConfig.currentOrigin.y -= distanceY;
+                final float dayHeight = config.hourHeight * config.maxHour;
+                final int viewHeight = WeekView.getViewHeight();
+                
+                final int minY = (int) (dayHeight + drawingConfig.headerHeight - viewHeight) * (-1);
+                final int maxY = ((int) config.hourHeight * config.minHour * (-1));
+                
+                drawingConfig.currentOrigin.y = Math.min(drawingConfig.currentOrigin.y, maxY);
+                drawingConfig.currentOrigin.y = Math.max(drawingConfig.currentOrigin.y, minY);
                 listener.onScrolled();
                 break;
         }
@@ -202,11 +210,11 @@ final class WeekViewGestureHandler<T> extends GestureDetector.SimpleOnGestureLis
         final int minX = (int) config.getMinX();
         final int maxX = (int) config.getMaxX();
 
-        final float dayHeight = config.hourHeight * Constants.HOURS_PER_DAY;
+        final float dayHeight = config.hourHeight * config.maxHour;
         final int viewHeight = WeekView.getViewHeight();
 
         final int minY = (int) (dayHeight + drawingConfig.headerHeight - viewHeight) * (-1);
-        final int maxY = 0;
+        final int maxY = ((int) config.hourHeight * config.minHour * (-1));
 
         scroller.fling(startX, startY, velocityX, velocityY, minX, maxX, minY, maxY);
     }
@@ -221,11 +229,11 @@ final class WeekViewGestureHandler<T> extends GestureDetector.SimpleOnGestureLis
         final int minX = Integer.MIN_VALUE;
         final int maxX = Integer.MAX_VALUE;
 
-        final float dayHeight = config.hourHeight * Constants.HOURS_PER_DAY;
+        final float dayHeight = config.hourHeight * config.maxHour;
         final int viewHeight = WeekView.getViewHeight();
 
         final int minY = (int) (dayHeight + drawingConfig.headerHeight - viewHeight) * (-1);
-        final int maxY = 0;
+        final int maxY = ((int) config.hourHeight * config.minHour * (-1));
 
         scroller.fling(startX, startY, velocityX, velocityY, minX, maxX, minY, maxY);
     }
