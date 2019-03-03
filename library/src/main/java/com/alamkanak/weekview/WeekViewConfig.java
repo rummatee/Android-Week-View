@@ -276,6 +276,14 @@ public class WeekViewConfig {
     public void setMaxDate(Calendar maxDate) {
         this.maxDate = maxDate;
     }
+    
+    public void setMinHour(int hour) {
+        this.minHour = hour;
+    }
+        
+    public void setMaxHour(int hour) {
+        this.maxHour = hour;
+    }
 
     float getMinX() {
         if (maxDate != null) {
@@ -308,6 +316,14 @@ public class WeekViewConfig {
 
     int getStartHour() {
         return (showMidnightHour && showTimeColumnHourSeparator) ? 0 : timeColumnHoursInterval;
+    }
+    
+    int getMinHour() {
+        return this.minHour;
+    }
+        
+    int getMaxHour() {
+        return this.maxHour;
     }
 
     float getXOriginForDate(Calendar date) {

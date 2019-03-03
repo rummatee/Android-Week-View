@@ -1321,5 +1321,21 @@ public final class WeekView<T> extends View
         };
 
     }
+    
+    public void setMinHour(int hour) {
+        config.setMinHour(hour);
+    }
+    
+    public void setMaxHour(int hour) {
+        config.setMaxHour(hour);
+    }
+    
+    public int getMinHour() {
+        return config.getMinHour();
+    }
+    
+    public int getMaxHour() {
+        return config.getMaxHour();
+    }
 
 }
